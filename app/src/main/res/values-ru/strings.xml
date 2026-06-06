@@ -7,4 +7,8 @@
     <string name="description_like">Понравилось</string>
     <string name="description_share">Поделиться</string>
     <string name="description_views">Просмотрено</string>
+    <string name="remove">Удалить</string>
+    <string name="content">текст</string>
+    <string name="edit">Редактировать</string>
+    <string name="edit_message">Изменить сообщение</string>
 </resources>

@@ -8,37 +8,37 @@ import androidx.recyclerview.widget.RecyclerView
 import ru.netology.nmedia.databinding.PostCardBinding
 import ru.netology.nmedia.dto.Post
 
+interface PostListener {
+    fun onLike(post: Post)
+    fun onShare(post: Post)
+    fun onRemove(post: Post)
+    fun onEdit(post: Post)
 
-typealias LikeListener = (Post) -> Unit
-typealias ShareListener = (Post) -> Unit
+}
 
 class PostsAdapter(
-    private val likeListener: LikeListener,
-    private val shareListener: ShareListener
+    private val listener: PostListener
 ) : ListAdapter<Post, PostViewHolder>(PostDiffCallback) {
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): PostViewHolder {
-        val binding = PostCardBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
+        val binding =
+            PostCardBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
 
-        return PostViewHolder(binding, likeListener, shareListener)
+        return PostViewHolder(binding, listener)
     }
 
     override fun onBindViewHolder(viewHolder: PostViewHolder, position: Int) {
         val post = getItem(position)
         viewHolder.bind(post)
     }
-
-
 }
 
-object PostDiffCallback: DiffUtil.ItemCallback<Post>() {
+object PostDiffCallback : DiffUtil.ItemCallback<Post>() {
     override fun areItemsTheSame(
-        oldItem: Post,
-        newItem: Post
-    )= oldItem.id == newItem.id
+        oldItem: Post, newItem: Post
+    ) = oldItem.id == newItem.id
 
     override fun areContentsTheSame(
-        oldItem: Post,
-        newItem: Post
+        oldItem: Post, newItem: Post
     ) = oldItem == newItem
 }

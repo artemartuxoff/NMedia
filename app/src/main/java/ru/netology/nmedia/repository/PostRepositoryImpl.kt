@@ -7,6 +7,7 @@ import ru.netology.nmedia.dto.Post
 class PostRepositoryImpl : PostRepository {
 
     private var posts = listOf<Post>(
+
         Post(
             1,
             "Нетология. Университет интернет-профессий будущего",
@@ -57,5 +58,36 @@ class PostRepositoryImpl : PostRepository {
             if (it.id != id) it else it.copy(shareCount = it.shareCount + 1)
         }
         data.value = posts
+    }
+
+    override fun removeById(id: Long) {
+
+        posts = posts.filter { it.id != id }
+        data.value = posts
+    }
+
+    override fun save(post: Post) {
+        if (post.id == 0L) {
+            posts = listOf(
+                post.copy(
+                    author = "Me",
+                    likes = 0,
+                    likedByMe = false,
+                    shareCount = 0,
+                    published = "now"
+                )
+            ) + posts
+
+        }
+        else {
+            posts = posts.map{
+                if (it.id == post.id)
+                    it.copy(content = post.content)
+                else it
+            }
+        }
+
+        data.value = posts
+
     }
 }

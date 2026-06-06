@@ -1,5 +1,9 @@
 package ru.netology.nmedia.adapter
 
+import android.view.View
+import android.widget.TextView
+import androidx.appcompat.widget.PopupMenu
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import ru.netology.nmedia.R
 import ru.netology.nmedia.activity.showAmount
@@ -8,26 +12,49 @@ import ru.netology.nmedia.dto.Post
 
 class PostViewHolder(
     private val binding: PostCardBinding,
-    private val likeListener: LikeListener,
-    private val shareListener: ShareListener
+    private val listener: PostListener
 
 ) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(post: Post) {
-        with (binding) {
+        with(binding) {
             author.text = post.author
             published.text = post.published
             content.text = post.content
             likecount.text = showAmount(post.likes)
-            sharecount.text =showAmount(post.shareCount)
+            sharecount.text = showAmount(post.shareCount)
             like.setImageResource(if (post.likedByMe) R.drawable.ic_liked_24 else R.drawable.ic_like_24)
 
             like.setOnClickListener {
-                  likeListener(post)          }
+                listener.onLike(post)
+            }
 
             share.setOnClickListener {
-                shareListener(post)          }
+                listener.onShare(post)
+            }
 
+            binding.
+
+            menu.setOnClickListener {
+                PopupMenu(it.context, it).apply {
+                    inflate(R.menu.post_menu)
+                    setOnMenuItemClickListener { item ->
+                        when (item.itemId) {
+                            R.id.remove -> {
+                                listener.onRemove(post)
+                                true
+                            }
+
+                            R.id.edit -> {
+                                listener.onEdit(post)
+                                true
+                            }
+
+                            else -> false
+                        }
+                    }
+                }.show()
+            }
         }
     }
 }

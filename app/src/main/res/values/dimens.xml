@@ -3,4 +3,5 @@
     <dimen name="padding">16dp</dimen>dimen>
     <dimen name="padding_ic">8dp</dimen>dimen>
     <dimen name="image_size">48dp</dimen>dimen>
+
 </resources>

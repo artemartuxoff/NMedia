@@ -6,4 +6,8 @@
     <string name="description_like">like</string>
     <string name="description_share">share</string>
     <string name="description_views">views</string>
+    <string name="remove">Remove</string>
+    <string name="content">Content</string>
+    <string name="edit">Edit</string>
+    <string name="edit_message">Edit message</string>
 </resources>

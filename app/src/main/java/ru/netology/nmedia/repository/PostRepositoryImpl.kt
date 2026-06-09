@@ -39,6 +39,8 @@ class PostRepositoryImpl : PostRepository {
         )
     )
 
+    private var idLastPost:Long = 3
+
     private val data = MutableLiveData(posts)
 
     override fun getall(): LiveData<List<Post>> = data
@@ -68,8 +70,10 @@ class PostRepositoryImpl : PostRepository {
 
     override fun save(post: Post) {
         if (post.id == 0L) {
+            idLastPost = idLastPost + 1
             posts = listOf(
                 post.copy(
+                    id = idLastPost,
                     author = "Me",
                     likes = 0,
                     likedByMe = false,

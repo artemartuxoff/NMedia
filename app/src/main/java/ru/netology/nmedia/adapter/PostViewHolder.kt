@@ -21,10 +21,12 @@ class PostViewHolder(
             author.text = post.author
             published.text = post.published
             content.text = post.content
-            likecount.text = showAmount(post.likes)
-            sharecount.text = showAmount(post.shareCount)
-            like.setImageResource(if (post.likedByMe) R.drawable.ic_liked_24 else R.drawable.ic_like_24)
-
+ //         likecount.text = showAmount(post.likes)
+ //         sharecount.text = showAmount(post.shareCount)
+ //         like.setImageResource(if (post.likedByMe) R.drawable.ic_liked_24 else R.drawable.ic_like_24)
+            share.text = showAmount(post.shareCount)
+            like.isChecked = post.likedByMe
+            like.text = showAmount(post.likes)
             like.setOnClickListener {
                 listener.onLike(post)
             }

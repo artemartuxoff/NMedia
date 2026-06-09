@@ -22,7 +22,12 @@ class PostViewModel : ViewModel() {
                 repository.save(post.copy(content = content))
             }
             edited.value = emptyPost
-        }    }
+        }
+    }
+
+    fun cancelEdit(){
+        edited.value = emptyPost
+    }
 
     fun edit(post: Post) {
         edited.value = post

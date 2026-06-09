@@ -84,6 +84,7 @@ class MainActivity : AppCompatActivity() {
         binding.canceledit.setOnClickListener {
             binding.content.clearFocus()
             binding.content.setText("")
+            viewModel.cancelEdit()
             AndroidUtils.hideKeyboard(binding.content)
             binding.cancelgroup.visibility = View.GONE
         }

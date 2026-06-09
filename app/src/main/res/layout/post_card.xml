@@ -74,69 +74,56 @@
         app:barrierDirection="bottom"
         app:constraint_referenced_ids="content" />
 
-    <ImageButton
+<!--    <com.google.android.material.checkbox.MaterialCheckBox-->
+<!--        android:id="@+id/like"-->
+<!--        style="@style/Widget.AppTheme.LikeCheckBox"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="@dimen/padding"-->
+<!--        android:contentDescription="@string/description_like"-->
+<!--        android:button="@drawable/ic_like_selector"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/barrier_content" />-->
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/like"
+        style="@style/Widget.AppTheme.IconButton"
+        android:checkable="true"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/padding"
-        android:background="@android:color/transparent"
         android:contentDescription="@string/description_like"
-        android:src="@drawable/ic_like_24"
+        app:icon="@drawable/ic_like_selector"
+        app:iconTint="@color/like_selector"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/barrier_content" />
 
-    <TextView
-        android:id="@+id/likecount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/padding_ic"
-        android:layout_marginTop="@dimen/padding"
-        app:layout_constraintStart_toEndOf="@id/like"
-        app:layout_constraintTop_toBottomOf="@id/barrier_content"
-        tools:text="@sample/posts.json/data/like" />
-
-    <ImageButton
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/share"
+        style="@style/Widget.AppTheme.IconButton"
+        android:checkable="true"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/padding"
         android:layout_marginTop="@dimen/padding"
-        android:background="@android:color/transparent"
         android:contentDescription="@string/description_share"
-        android:src="@drawable/ic_share_24"
-        app:layout_constraintStart_toEndOf="@id/likecount"
+        app:icon="@drawable/ic_share_24"
+        app:layout_constraintStart_toEndOf="@id/like"
         app:layout_constraintTop_toBottomOf="@id/barrier_content" />
 
-    <TextView
-        android:id="@+id/sharecount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/padding_ic"
-        android:layout_marginTop="@dimen/padding"
-        app:layout_constraintStart_toEndOf="@id/share"
-        app:layout_constraintTop_toBottomOf="@id/barrier_content"
-        tools:text="@sample/posts.json/data/share" />
-
-    <ImageButton
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/show"
+        style="@style/Widget.AppTheme.IconButton"
+        android:checkable="true"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/padding"
         android:layout_marginEnd="@dimen/padding_ic"
-        android:background="@android:color/transparent"
         android:contentDescription="@string/description_views"
-        android:src="@drawable/ic_views_24"
-        app:layout_constraintEnd_toStartOf="@id/showcount"
+        app:icon="@drawable/ic_views_24"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/barrier_content" />
 
-    <TextView
-        android:id="@+id/showcount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/padding"
-        android:layout_marginTop="@dimen/padding"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/barrier_content"
-        tools:text="@sample/posts.json/data/show" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

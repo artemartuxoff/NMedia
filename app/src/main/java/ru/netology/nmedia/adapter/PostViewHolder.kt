@@ -27,12 +27,23 @@ class PostViewHolder(
             share.text = showAmount(post.shareCount)
             like.isChecked = post.likedByMe
             like.text = showAmount(post.likes)
+
+
+            if (post.videoUrl =="") {
+                binding.picVideo.visibility = View.GONE
+                binding.picVideoOk.visibility = View.GONE
+            }
+
             like.setOnClickListener {
                 listener.onLike(post)
             }
 
             share.setOnClickListener {
                 listener.onShare(post)
+            }
+
+            picVideoOk.setOnClickListener {
+                listener.onClickVideo(post)
             }
 
             binding.

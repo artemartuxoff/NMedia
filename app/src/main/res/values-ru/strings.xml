@@ -11,4 +11,7 @@
     <string name="content">текст</string>
     <string name="edit">Редактировать</string>
     <string name="edit_message">Изменить сообщение</string>
+    <string name="chooser_share_post">Поделиться постом</string>
+    <string name="error_empty_content">Пустой текст поста</string>
+    <string name="description_post_save">Save</string>
 </resources>

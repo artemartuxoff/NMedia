@@ -33,6 +33,10 @@ class PostViewHolder(
                 binding.picVideo.visibility = View.GONE
                 binding.picVideoOk.visibility = View.GONE
             }
+            else{
+                binding.picVideo.visibility = View.VISIBLE
+                binding.picVideoOk.visibility = View.VISIBLE
+            }
 
             like.setOnClickListener {
                 listener.onLike(post)

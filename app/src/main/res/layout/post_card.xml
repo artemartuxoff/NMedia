@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="16dp"
-    tools:context=".activity.MainActivity">
+    tools:context=".fragment.FragmentPostCard">
 
     <ImageView
         android:id="@+id/avatar"
@@ -40,16 +40,6 @@
         app:layout_constraintStart_toEndOf="@id/avatar"
         app:layout_constraintTop_toBottomOf="@id/author"
         tools:text="@sample/posts.json/data/published" />
-
-<!--    <ImageButton-->
-<!--        android:id="@+id/menu"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:background="@android:color/transparent"-->
-<!--        android:contentDescription="@string/description_post_menu"-->
-<!--        android:src="@drawable/ic_more_vert_24"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/menu"
@@ -104,17 +94,6 @@
         app:barrierDirection="bottom"
         app:constraint_referenced_ids="content,pic_video" />
 
-<!--    <com.google.android.material.checkbox.MaterialCheckBox-->
-<!--        android:id="@+id/like"-->
-<!--        style="@style/Widget.AppTheme.LikeCheckBox"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="@dimen/padding"-->
-<!--        android:contentDescription="@string/description_like"-->
-<!--        android:button="@drawable/ic_like_selector"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/barrier_content" />-->
-
     <com.google.android.material.button.MaterialButton
         android:id="@+id/like"
         style="@style/Widget.AppTheme.IconButton"
@@ -153,7 +132,5 @@
         app:icon="@drawable/ic_views_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/barrier_content" />
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

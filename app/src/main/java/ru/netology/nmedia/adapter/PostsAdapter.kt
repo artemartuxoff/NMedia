@@ -14,6 +14,7 @@ interface PostListener {
     fun onRemove(post: Post)
     fun onEdit(post: Post)
     fun onClickVideo(post: Post)
+    fun onClickContent(post: ru.netology.nmedia.dto.Post)
 
 }
 

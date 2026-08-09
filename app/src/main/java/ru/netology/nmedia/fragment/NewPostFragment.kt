@@ -19,11 +19,16 @@ class NewPostFragment : Fragment() {
 
         arguments?.textArg?.let { binding.edit.setText(it) }
 
+        viewModel.postCreated.observe(viewLifecycleOwner){
+            findNavController().navigateUp()
+            viewModel.load()
+        }
+
         binding.ok.setOnClickListener {
            if(!binding.edit.text.isNullOrBlank()){
               viewModel.save(binding.edit.text.toString())
            }
-            findNavController().navigateUp()
+
         }
         return binding.root
     }

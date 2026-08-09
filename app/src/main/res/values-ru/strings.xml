@@ -14,4 +14,10 @@
     <string name="chooser_share_post">Поделиться постом</string>
     <string name="error_empty_content">Пустой текст поста</string>
     <string name="description_post_save">Save</string>
+    <string name="notification_user_liked">%1$s поставил лайк посту %2$s</string>
+    <string name="channel_remote_name">Уведомления с сервера</string>
+    <string name="channel_remote_description">Уведомления с удалённого сервера</string>
+    <string name="no_posts">Нет постов</string>
+    <string name="network_error">Ошибка сети</string>
+    <string name="retry">Повторить</string>
 </resources>

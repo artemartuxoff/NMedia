@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "44419169915",
+    "project_id": "nmedia-3630d",
+    "storage_bucket": "nmedia-3630d.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:44419169915:android:8fae6b3cd437d32c7facde",
+        "android_client_info": {
+          "package_name": "ru.netology.nmedia"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9jy_oLbXEjGXtfMmIYl1xFZb6fNlFHO8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

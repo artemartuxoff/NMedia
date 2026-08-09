@@ -19,7 +19,7 @@ class PostViewHolder(
     fun bind(post: Post) {
         with(binding) {
             author.text = post.author
-            published.text = post.published
+            published.text = post.published.toString()
             content.text = post.content
             share.text = showAmount(post.shareCount)
             like.isChecked = post.likedByMe

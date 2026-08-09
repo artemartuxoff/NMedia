@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.ksp)
+    id("com.google.gms.google-services") version "4.5.0"
 }
 
 android {
@@ -32,6 +33,12 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+
+            manifestPlaceholders["usesCleartextTraffic"] = false
+        }
+
+        debug {
+            manifestPlaceholders["usesCleartextTraffic"] = true
         }
     }
     compileOptions {
@@ -53,6 +60,10 @@ dependencies {
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.androidx.room.runtime)
+    implementation(platform(libs.firebase))
+    implementation(libs.firebase.messaging)
+    implementation(libs.play.services)
+    implementation(libs.okhttp)
     ksp(libs.androidx.room.compiler)
     implementation(libs.material)
     implementation(libs.gson)

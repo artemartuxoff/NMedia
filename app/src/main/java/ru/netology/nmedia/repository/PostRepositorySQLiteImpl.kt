@@ -1,32 +1,124 @@
 package ru.netology.nmedia.repository
 
+import android.telecom.Call
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.map
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import ru.netology.nmedia.dao.PostDao
 import ru.netology.nmedia.dto.Post
 import ru.netology.nmedia.entity.PostEntity
+import java.lang.reflect.Type
+import java.util.concurrent.TimeUnit
 
-class PostRepositorySQLiteImpl(private val dao: PostDao) : PostRepository {
+class PostRepositorySQLiteImpl : PostRepository {
 
-    override fun getAll(): LiveData<List<Post>> = dao.getAll().map { postsEntity ->
-        postsEntity.map {
-         it.toDto()
-        }
+    private companion object{
+        const val BASE_URL = "http://10.0.2.2:9999"
+        val jsonType = "application/json".toMediaType()
+        val gson = Gson()
+        val postsType: Type = object: TypeToken<List<Post>>(){}.type
     }
 
-    override fun likeById(id: Long) {
-        dao.likeById(id)
+    private val client = OkHttpClient.Builder().connectTimeout(30, TimeUnit.SECONDS).build()
+
+
+    override fun getAll(): List<Post> {
+        val call = client.newCall(
+            Request.Builder()
+                .url("$BASE_URL/api/slow/posts")
+                .build()
+        )
+
+        val responce = call.execute()
+        val responceText = responce.body.string()
+
+        return gson.fromJson<List<Post>>(responceText, postsType)
+    }
+
+    override fun likeById(id: Long):Post {
+
+        val requestGet: Request = Request.Builder()
+            .get()
+            .url("$BASE_URL/api/posts/$id")
+            .build()
+
+        val callGet = client.newCall(requestGet)
+
+        val responceGet = callGet.execute()
+        val responceTextGet = responceGet.body.string()
+
+        val post = gson.fromJson(responceTextGet, Post::class.java)
+
+        if (post.likedByMe) {
+
+            val request: Request = Request.Builder()
+                .delete(RequestBody.EMPTY)
+                .url("$BASE_URL/api/posts/$id/likes")
+                .build()
+
+            val call = client.newCall(request)
+
+            val responce = call.execute()
+            val responceText = responce.body.string()
+
+            return gson.fromJson(responceText, Post::class.java)
+        }
+        else {
+            val request: Request = Request.Builder()
+                .post(RequestBody.EMPTY)
+                .url("$BASE_URL/api/posts/$id/likes")
+                .build()
+
+            val call = client.newCall(request)
+
+            val responce = call.execute()
+            val responceText = responce.body.string()
+
+            return gson.fromJson(responceText, Post::class.java)
+        }
+
+
+
+
     }
 
     override fun shareById(id: Long) {
-        dao.shareById(id)
+        //dao.shareById(id)
     }
 
     override fun removeById(id: Long) {
-        dao.removeById(id)
+
+        val call = client.newCall(
+            Request.Builder()
+                .url("$BASE_URL/api/slow/posts/$id")
+                .delete()
+                .build()
+        )
+
+        call.execute()
+
+
     }
 
-    override fun save(post: Post) {
-        dao.save(PostEntity.fromDto(post))
+    override fun save(post: Post):Post {
+
+        val call = client.newCall(
+            Request.Builder()
+                .url("$BASE_URL/api/slow/posts")
+                .post(gson.toJson(post).toRequestBody(jsonType))
+                .build()
+        )
+
+        val responce = call.execute()
+        val responceText = responce.body.string()
+
+        return gson.fromJson(responceText, Post::class.java)
+
     }
 }

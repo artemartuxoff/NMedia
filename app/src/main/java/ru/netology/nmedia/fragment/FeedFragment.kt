@@ -9,6 +9,7 @@ import androidx.activity.result.launch
 import androidx.annotation.ContentView
 import androidx.core.net.toUri
 import androidx.core.os.bundleOf
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -74,8 +75,15 @@ class FeedFragment : Fragment() {
 
         binding.list.adapter = adapter
 
-        viewModel.data.observe(viewLifecycleOwner) { posts ->
-            adapter.submitList(posts)
+        viewModel.data.observe(viewLifecycleOwner) { state ->
+            adapter.submitList(state.posts)
+            binding.progress.isVisible = state.empty
+            binding.errorGroup.isVisible = state.error
+
+        }
+
+        binding.retry.setOnClickListener {
+            viewModel.load()
         }
 
         binding.add.setOnClickListener {

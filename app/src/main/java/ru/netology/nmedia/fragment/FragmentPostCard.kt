@@ -32,12 +32,12 @@ class FragmentPostCard : Fragment() {
         val viewModel: PostViewModel by viewModels(ownerProducer = ::requireParentFragment)
 
         val postId = arguments?.idArg ?: -1
-        viewModel.data.observe(viewLifecycleOwner) { posts ->
-            val post = posts.find { it.id.toString() == postId } ?: return@observe
+        viewModel.data.observe(viewLifecycleOwner) { state ->
+            val post = state.posts.find { it.id.toString() == postId } ?: return@observe
             with(binding) {
 
                 author.text = post.author
-                published.text = post.published
+                published.text = post.published.toString()
                 content.text = post.content
                 share.text = showAmount(post.shareCount)
                 like.isChecked = post.likedByMe

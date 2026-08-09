@@ -13,7 +13,7 @@ data class PostEntity(
     @ColumnInfo(name = "author")
     val author: String = "",
     @ColumnInfo(name = "published")
-    val published: String = "",
+    val published: Long = 0,
     @ColumnInfo(name = "content")
     val content: String = "",
     @ColumnInfo(name = "likes")

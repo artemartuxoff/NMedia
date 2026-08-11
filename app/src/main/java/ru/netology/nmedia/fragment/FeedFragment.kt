@@ -5,8 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.result.launch
-import androidx.annotation.ContentView
 import androidx.core.net.toUri
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
@@ -18,8 +16,6 @@ import ru.netology.nmedia.adapter.PostListener
 import ru.netology.nmedia.adapter.PostsAdapter
 import ru.netology.nmedia.databinding.FragmentFeedBinding
 import ru.netology.nmedia.dto.Post
-import ru.netology.nmedia.fragment.NewPostFragment.Companion.textArg
-import ru.netology.nmedia.util.StringArg
 import ru.netology.nmedia.viewmodel.PostViewModel
 
 class FeedFragment : Fragment() {
@@ -35,7 +31,7 @@ class FeedFragment : Fragment() {
 
         val adapter = PostsAdapter(object : PostListener {
             override fun onLike(post: Post) {
-                viewModel.likeById(post.id)
+                viewModel.likeById(post.id, post.likedByMe)
             }
 
             override fun onShare(post: Post) {

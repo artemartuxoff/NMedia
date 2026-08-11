@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import ru.netology.nmedia.db.AppDb
+import androidx.lifecycle.viewmodel.CreationExtras
 import ru.netology.nmedia.dto.Post
 import ru.netology.nmedia.model.FeedModel
 import ru.netology.nmedia.repository.PostRepository
@@ -50,14 +50,24 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    fun likeById(id: Long){
+    fun likeById(id: Long, likedByMe: Boolean){
         thread {
-            repository.likeById(id)
 
-            load()
+            val postResponse: Post = repository.likeById(id, likedByMe)
+
+            val posts = arrayListOf<Post>()
+
+            _data.value?.posts?.forEach { post ->
+                if (post.id == id) {
+                    posts.add(post.copy(likes = postResponse.likes, likedByMe = postResponse.likedByMe))
+                }
+                else{
+                    posts.add(post)
+                }
+            }
+
+            _data.postValue(FeedModel(posts, empty = posts.isEmpty()))
         }
-
-
     }
     fun shareById(id: Long) = repository.shareById(id)
     fun removeById(id: Long) = repository.removeById(id)

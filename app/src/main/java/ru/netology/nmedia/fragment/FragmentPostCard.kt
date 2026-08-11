@@ -12,12 +12,8 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import ru.netology.nmedia.R
 import ru.netology.nmedia.activity.showAmount
-import ru.netology.nmedia.databinding.FragmentNewPostBinding
 import ru.netology.nmedia.databinding.FragmentPostCardBinding
-import ru.netology.nmedia.dto.Post
 import ru.netology.nmedia.util.StringArg
-import ru.netology.nmedia.util.StringArg.getValue
-import ru.netology.nmedia.util.StringArg.setValue
 import ru.netology.nmedia.viewmodel.PostViewModel
 import kotlin.getValue
 
@@ -53,7 +49,7 @@ class FragmentPostCard : Fragment() {
                 }
 
                 like.setOnClickListener {
-                    viewModel.likeById(post.id)
+                    viewModel.likeById(post.id, post.likedByMe)
                 }
 
                 share.setOnClickListener {

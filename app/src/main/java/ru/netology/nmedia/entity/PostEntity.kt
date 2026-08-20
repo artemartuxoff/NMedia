@@ -12,6 +12,7 @@ data class PostEntity(
     val id: Long = 0,
     @ColumnInfo(name = "author")
     val author: String = "",
+    var authorAvatar: String?,
     @ColumnInfo(name = "published")
     val published: Long = 0,
     @ColumnInfo(name = "content")
@@ -28,6 +29,7 @@ data class PostEntity(
     fun toDto(): Post = Post(
         id = id,
         author = author,
+        authorAvatar = authorAvatar,
         published = published,
         content = content,
         likes =likes,
@@ -41,6 +43,7 @@ data class PostEntity(
             PostEntity(
                 id = id,
                 author = author,
+                authorAvatar = authorAvatar,
                 published = published,
                 content = content,
                 likes =likes,

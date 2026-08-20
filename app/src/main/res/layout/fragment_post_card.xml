@@ -15,7 +15,7 @@
             android:layout_width="@dimen/image_size"
             android:layout_height="@dimen/image_size"
             android:contentDescription="@string/description_post_author_avatar"
-            android:src="@drawable/ic_launcher_foreground"
+
             app:layout_constraintBottom_toBottomOf="@id/barrier_header"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

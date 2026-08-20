@@ -9,6 +9,9 @@ import ru.netology.nmedia.R
 import ru.netology.nmedia.activity.showAmount
 import ru.netology.nmedia.databinding.PostCardBinding
 import ru.netology.nmedia.dto.Post
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import android.graphics.BitmapFactory
 
 class PostViewHolder(
     private val binding: PostCardBinding,
@@ -24,6 +27,15 @@ class PostViewHolder(
             share.text = showAmount(post.shareCount)
             like.isChecked = post.likedByMe
             like.text = showAmount(post.likes)
+
+            val url = "http://10.0.2.2:9999/avatars/${post.authorAvatar}"
+            Glide.with(binding.avatar)
+                .load(url)
+                .circleCrop()
+                .placeholder(R.drawable.ic_loading_100dp)
+                .error(R.drawable.ic_error_100dp)
+                .timeout(10_000)
+                .into(binding.avatar)
 
 
             if (post.videoUrl =="") {
@@ -73,4 +85,8 @@ class PostViewHolder(
             }
         }
     }
+
+
+
+
 }

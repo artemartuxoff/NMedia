@@ -8,6 +8,16 @@
     tools:context=".activity.MainActivity">
 
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/fragment_post_card" />
+
+
+
     <ProgressBar
         android:id="@+id/progress"
         android:layout_width="wrap_content"
@@ -60,13 +70,7 @@
         android:layout_height="wrap_content"/>
 
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/fragment_post_card" />
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/add"
